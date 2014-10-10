@@ -29,10 +29,13 @@ func main() {
 		"2,3": 0,
 		"3,3": 0,
 	}
-	printGrid(g)
 	fmt.Printf("----- EMPTY GRID: -----\n")
+	printGrid(g)
 	g = initGrid(g)
 	fmt.Printf("----- INIT GRID: -----\n")
+	printGrid(g)
+	g = swipe_right(g)
+	fmt.Printf("----- SWIPE RIGHT: -----\n")
 	printGrid(g)
 }
 
@@ -69,7 +72,6 @@ func initGrid(g  map[string]int) map[string]int {
 	num1:= randomNum()
 	time.Sleep(10 * time.Millisecond)
 	num2:= randomNum()
-	fmt.Printf(strconv.Itoa(num1)+"\n")
 	g = putInGrid(g, num1)
 	g = putInGrid(g, num2)
 	return g
@@ -99,8 +101,63 @@ func get_props() {
 	
 }
 
-func swipe_right(g *map[string]int) {
-	fmt.Printf("Going Right\n")
+func swipe_right(g map[string]int) map[string]int {
+	// by swiping right, we move all numbers to the right, combining them when the number to their right is the same
+	var a [4]int
+	var r [4]int
+	for y:=0; y<4; y++ {
+		a[0] = g[strconv.Itoa(0)+","+strconv.Itoa(y)]
+		a[1] = g[strconv.Itoa(1)+","+strconv.Itoa(y)]
+		a[2] = g[strconv.Itoa(2)+","+strconv.Itoa(y)]
+		a[3] = g[strconv.Itoa(3)+","+strconv.Itoa(y)]
+		fmt.Printf("On Y access of " + strconv.Itoa(y)+"\n")
+		r = determine_swipe_result(a)
+		for z := 0; z<4; z++ {
+			fmt.Printf("Returned for X of " + strconv.Itoa(z) + " with value of access of " + strconv.Itoa(r[z])+"\n")
+			g[strconv.Itoa(z)+","+strconv.Itoa(y)] = r[z]
+		}
+	}
+	return g
+}
+
+func determine_swipe_result(a [4]int) [4]int {
+	//always pushes toward D
+	ar,br,cr,dr :=0,0,0,0
+	//find num same right next to each other non-zero. Add op needed then push right.
+	   // if 1==2 & 3==4 case
+	//else push right
+	numZeroes := 0
+	numDiff := 0
+	numRight := 0
+	numLeft := 0
+	numDiffRight := 0
+	numDiffLeft := 0
+	numDiffMid := 0
+	for i:= 0; i<4; i++ {
+		if a[i] == 0 {
+			numZeroes++
+		}
+	}
+
+    // if they are all zeros then no real result.
+    if (a[0] != 0) || (a[1] != 0) || (a[2] != 0) || (a[3] != 0) {
+    	
+    }
+
+	if a[3] == a[2] {
+		dr = a[3] + a[2]
+	}
+	if (a[1] == a[2]) && (dr == 0) {
+		cr = a[1] + a[2]
+	}
+	if (a[0] == a[1]) && (cr == 0) {
+		br=a[0] + a[2]
+	}
+	if (a[3] != 0) && (dr != 0) {
+		dr = a[2]
+	}
+
+    return [4]int{ar,br,cr,dr}
 }
 
 func swipe_left(g *map[string]int) {
