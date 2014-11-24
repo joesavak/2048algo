@@ -113,7 +113,7 @@ func swipe_right(g map[string]int) map[string]int {
 		fmt.Printf("On Y access of " + strconv.Itoa(y)+"\n")
 		r = determine_swipe_result(a)
 		for z := 0; z<4; z++ {
-			fmt.Printf("Returned for X of " + strconv.Itoa(z) + " with value of access of " + strconv.Itoa(r[z])+"\n")
+			//fmt.Printf("Returned for X of " + strconv.Itoa(z) + " with value of access of " + strconv.Itoa(r[z])+"\n")
 			g[strconv.Itoa(z)+","+strconv.Itoa(y)] = r[z]
 		}
 	}
@@ -126,24 +126,39 @@ func determine_swipe_result(a [4]int) [4]int {
 	//find num same right next to each other non-zero. Add op needed then push right.
 	   // if 1==2 & 3==4 case
 	//else push right
-	numZeroes := 0
-	numDiff := 0
-	numRight := 0
-	numLeft := 0
-	numDiffRight := 0
-	numDiffLeft := 0
-	numDiffMid := 0
-	for i:= 0; i<4; i++ {
-		if a[i] == 0 {
-			numZeroes++
+	
+	// number of zeroes in the grid
+	zcount :=0
+	for x := 0; x<4; x++ {
+		if a[x] == 0 {
+			zcount++
 		}
 	}
 
-    // if they are all zeros then no real result.
-    if (a[0] != 0) || (a[1] != 0) || (a[2] != 0) || (a[3] != 0) {
-    	
-    }
+	if zcount == 4 {
+		return [4]int{ar,br,cr,dr} 
+	} else if zcount == 3 {
+		return [4]int{ar,br,cr,a[0] + a[1] + a[2] + a[3]}
+	}
 
+	if (a[0] != a[1]) && (a[1] != a[2]) && (a[2] != a[3]) {
+		if a[3] == 0 {
+			ar,br,cr,dr := 0,a[0],a[1],a[2]
+			return [4]int{ar,br,cr,dr}
+		} else if a[2] == 0 {
+			ar,br,cr,dr := 0,a[0],a[1],a[3]
+			return [4]int{ar,br,cr,dr}
+		} else if a[1] == 0 {
+			ar,br,cr,dr := 0,a[0],a[2],a[3]
+			return [4]int{ar,br,cr,dr}
+		}  else {
+			ar,br,cr,dr := a[0],a[1],a[2],a[3]
+			return [4]int{ar,br,cr,dr}
+		}
+	}
+
+
+	
 	if a[3] == a[2] {
 		dr = a[3] + a[2]
 	}
