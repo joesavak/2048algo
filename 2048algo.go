@@ -32,80 +32,39 @@ func main() {
 	//fmt.Printf("----- EMPTY GRID: -----\n")
 	//printGrid(g)
 	g = initGrid(g)
-	//fmt.Printf("----- INIT GRID: -----\n")
-	//printGrid(g)
+	fmt.Printf("----- INIT GRID: -----\n")
+	printGrid(g)
 	g = swipe_right(g)
-	//fmt.Printf("----- SWIPE RIGHT: -----\n")
-	//printGrid(g)
-	var out [4]int
-	//0000
-	//fmt.Printf("!!: 0000\n")
-	//out = determine_swipe_result([4]int{0,0,0,0})
-	//fmt.Printf(strconv.Itoa(out[0]) + "," + strconv.Itoa(out[1]) + "," + strconv.Itoa(out[2]) + "," + strconv.Itoa(out[3])+"\n\n")
-	// 0002
-	//fmt.Printf("!!: 0002\n")
-	//out = determine_swipe_result([4]int{0,0,0,2})
-	//fmt.Printf(strconv.Itoa(out[0]) + "," + strconv.Itoa(out[1]) + "," + strconv.Itoa(out[2]) + "," + strconv.Itoa(out[3])+"\n\n")
-	// 0020
-	//fmt.Printf("!!: 0020\n")
-	//out = determine_swipe_result([4]int{0,0,2,0})
-	//fmt.Printf(strconv.Itoa(out[0]) + "," + strconv.Itoa(out[1]) + "," + strconv.Itoa(out[2]) + "," + strconv.Itoa(out[3])+"\n\n")
-	// 0022
-	//fmt.Printf("!!: 0022\n")
-	//out = determine_swipe_result([4]int{0,0,2,2})
-	//fmt.Printf(strconv.Itoa(out[0]) + "," + strconv.Itoa(out[1]) + "," + strconv.Itoa(out[2]) + "," + strconv.Itoa(out[3])+"\n\n")
-	// 0040
-	fmt.Printf("!!: 0040\n")
-	out = determine_swipe_result([4]int{0,0,4,0})
-	fmt.Printf(strconv.Itoa(out[0]) + "," + strconv.Itoa(out[1]) + "," + strconv.Itoa(out[2]) + "," + strconv.Itoa(out[3])+"\n\n")
-	// 0200
-	fmt.Printf("!!: 0200\n")
-	out = determine_swipe_result([4]int{0,2,0,0})
-	fmt.Printf(strconv.Itoa(out[0]) + "," + strconv.Itoa(out[1]) + "," + strconv.Itoa(out[2]) + "," + strconv.Itoa(out[3])+"\n\n")
-	// 0202
-	fmt.Printf("!!: 0202\n")
-	out = determine_swipe_result([4]int{0,2,0,2})
-	fmt.Printf(strconv.Itoa(out[0]) + "," + strconv.Itoa(out[1]) + "," + strconv.Itoa(out[2]) + "," + strconv.Itoa(out[3])+"\n\n")
-	// 0220
-	fmt.Printf("!!: 0220\n")
-	out = determine_swipe_result([4]int{0,2,2,0})
-	fmt.Printf(strconv.Itoa(out[0]) + "," + strconv.Itoa(out[1]) + "," + strconv.Itoa(out[2]) + "," + strconv.Itoa(out[3])+"\n\n")
-	// 0420
-	fmt.Printf("!!: 0420\n")
-	out = determine_swipe_result([4]int{0,4,2,0})
-	fmt.Printf(strconv.Itoa(out[0]) + "," + strconv.Itoa(out[1]) + "," + strconv.Itoa(out[2]) + "," + strconv.Itoa(out[3])+"\n\n")
-	// 2200
-	fmt.Printf("!!: 2200\n")
-	out = determine_swipe_result([4]int{2,2,0,0})
-	fmt.Printf(strconv.Itoa(out[0]) + "," + strconv.Itoa(out[1]) + "," + strconv.Itoa(out[2]) + "," + strconv.Itoa(out[3])+"\n\n")
-	// 2220
-	fmt.Printf("!!: 2220\n")
-	out = determine_swipe_result([4]int{2,2,2,0})
-	fmt.Printf(strconv.Itoa(out[0]) + "," + strconv.Itoa(out[1]) + "," + strconv.Itoa(out[2]) + "," + strconv.Itoa(out[3])+"\n\n")
-	// 2420
-	fmt.Printf("!!: 2420\n")
-	out = determine_swipe_result([4]int{2,4,2,0})
-	fmt.Printf(strconv.Itoa(out[0]) + "," + strconv.Itoa(out[1]) + "," + strconv.Itoa(out[2]) + "," + strconv.Itoa(out[3])+"\n\n")
-    // 4200
-	fmt.Printf("!!: 4200\n")
-	out = determine_swipe_result([4]int{4,2,0,0})
-	fmt.Printf(strconv.Itoa(out[0]) + "," + strconv.Itoa(out[1]) + "," + strconv.Itoa(out[2]) + "," + strconv.Itoa(out[3])+"\n\n")
-	// 2000
-	fmt.Printf("!!: 2000\n")
-	out = determine_swipe_result([4]int{2,0,0,0})
-	fmt.Printf(strconv.Itoa(out[0]) + "," + strconv.Itoa(out[1]) + "," + strconv.Itoa(out[2]) + "," + strconv.Itoa(out[3])+"\n\n")
-	// 2002
-	fmt.Printf("!!: 2002\n")
-	out = determine_swipe_result([4]int{2,0,0,2})
-	fmt.Printf(strconv.Itoa(out[0]) + "," + strconv.Itoa(out[1]) + "," + strconv.Itoa(out[2]) + "," + strconv.Itoa(out[3])+"\n\n")
-	// 2020
-	fmt.Printf("!!: 2020\n")
-	out = determine_swipe_result([4]int{2,0,2,0})
-	fmt.Printf(strconv.Itoa(out[0]) + "," + strconv.Itoa(out[1]) + "," + strconv.Itoa(out[2]) + "," + strconv.Itoa(out[3])+"\n\n")
-	// 4222
-	fmt.Printf("!!: 4222\n")
-	out = determine_swipe_result([4]int{4,2,2,2})
-	fmt.Printf(strconv.Itoa(out[0]) + "," + strconv.Itoa(out[1]) + "," + strconv.Itoa(out[2]) + "," + strconv.Itoa(out[3])+"\n\n")
+	fmt.Printf("----- SWIPE RIGHT: -----\n")
+	num1:= randomNum()
+	g = putInGrid(g, num1)
+	printGrid(g)
+
+	g = swipe_right(g)
+	fmt.Printf("----- SWIPE RIGHT: -----\n")
+	num1= randomNum()
+	g = putInGrid(g, num1)
+	printGrid(g)
+
+	g = swipe_right(g)
+	fmt.Printf("----- SWIPE RIGHT: -----\n")
+	num1= randomNum()
+	g = putInGrid(g, num1)
+	printGrid(g)
+
+
+	g = swipe_right(g)
+	fmt.Printf("----- SWIPE RIGHT: -----\n")
+	num1= randomNum()
+	g = putInGrid(g, num1)
+	printGrid(g)
+	
+	
+	
+	
+
+	//run_tests()
+	
 }
 
 func randomNum() int {
@@ -128,7 +87,6 @@ func getRandomOpenPos(g  map[string]int) string {
 	}
 	return a[rand.Intn(len(a))]
 
-	
 }
 
 func putInGrid(g map[string]int, v int) map[string]int {
@@ -225,9 +183,6 @@ func determine_swipe_result(a [4]int) [4]int {
 			return [4]int{ar,br,cr,dr}
 		}
 	}
-
-
-	fmt.Printf("HERE\n")
 	//fmt.Printf("DR:" + strconv.Itoa(dr) + "\n")
 	if (a[3] == a[2]) && (a[3] != a[1]) && (a[3]  != a[0]) {
 		dr = a[3] + a[2]
@@ -235,6 +190,7 @@ func determine_swipe_result(a [4]int) [4]int {
 	if (a[3] == a[2]) && (a[3] == a[1]) && (a[3]  != a[0]) {
 		cr = a[1]
 		dr = a[3] + a[2]
+		br = a[0]
 	}
 	if (a[3] == a[2]) && (a[3] != a[1]) && (a[3] == a[0]) {
 		cr = a[0]
@@ -270,6 +226,11 @@ func determine_swipe_result(a [4]int) [4]int {
 	if (a[0] == a[2]) && (a[1] ==0) && (a[3] == 0) && (a[0] != 0) {
 		dr = a[0] + a[2]
 	}
+	if (a[0] != 0) && (a[3] != 0) && (a[1] == 0) && (a[2] == 0) && (a[0] != a[3]) {
+		dr=a[3]
+		cr=a[0]
+
+	}
 
 
 	
@@ -287,4 +248,65 @@ func swipe_down(g *map[string]int) {
 
 func swipe_up(g *map[string]int) {
 	fmt.Printf("Going Up\n")
+}
+
+
+func run_tests() {
+	var out [4]int
+
+	fmt.Printf("!!: 0040\n")
+	out = determine_swipe_result([4]int{0,0,4,0})
+	fmt.Printf(strconv.Itoa(out[0]) + "," + strconv.Itoa(out[1]) + "," + strconv.Itoa(out[2]) + "," + strconv.Itoa(out[3])+"\n\n")
+	// 0200
+	fmt.Printf("!!: 0200\n")
+	out = determine_swipe_result([4]int{0,2,0,0})
+	fmt.Printf(strconv.Itoa(out[0]) + "," + strconv.Itoa(out[1]) + "," + strconv.Itoa(out[2]) + "," + strconv.Itoa(out[3])+"\n\n")
+	// 0202
+	fmt.Printf("!!: 0202\n")
+	out = determine_swipe_result([4]int{0,2,0,2})
+	fmt.Printf(strconv.Itoa(out[0]) + "," + strconv.Itoa(out[1]) + "," + strconv.Itoa(out[2]) + "," + strconv.Itoa(out[3])+"\n\n")
+	// 0220
+	fmt.Printf("!!: 0220\n")
+	out = determine_swipe_result([4]int{0,2,2,0})
+	fmt.Printf(strconv.Itoa(out[0]) + "," + strconv.Itoa(out[1]) + "," + strconv.Itoa(out[2]) + "," + strconv.Itoa(out[3])+"\n\n")
+	// 0420
+	fmt.Printf("!!: 0420\n")
+	out = determine_swipe_result([4]int{0,4,2,0})
+	fmt.Printf(strconv.Itoa(out[0]) + "," + strconv.Itoa(out[1]) + "," + strconv.Itoa(out[2]) + "," + strconv.Itoa(out[3])+"\n\n")
+	// 2200
+	fmt.Printf("!!: 2200\n")
+	out = determine_swipe_result([4]int{2,2,0,0})
+	fmt.Printf(strconv.Itoa(out[0]) + "," + strconv.Itoa(out[1]) + "," + strconv.Itoa(out[2]) + "," + strconv.Itoa(out[3])+"\n\n")
+	// 2220
+	fmt.Printf("!!: 2220\n")
+	out = determine_swipe_result([4]int{2,2,2,0})
+	fmt.Printf(strconv.Itoa(out[0]) + "," + strconv.Itoa(out[1]) + "," + strconv.Itoa(out[2]) + "," + strconv.Itoa(out[3])+"\n\n")
+	// 2420
+	fmt.Printf("!!: 2420\n")
+	out = determine_swipe_result([4]int{2,4,2,0})
+	fmt.Printf(strconv.Itoa(out[0]) + "," + strconv.Itoa(out[1]) + "," + strconv.Itoa(out[2]) + "," + strconv.Itoa(out[3])+"\n\n")
+    // 4200
+	fmt.Printf("!!: 4200\n")
+	out = determine_swipe_result([4]int{4,2,0,0})
+	fmt.Printf(strconv.Itoa(out[0]) + "," + strconv.Itoa(out[1]) + "," + strconv.Itoa(out[2]) + "," + strconv.Itoa(out[3])+"\n\n")
+	// 2000
+	fmt.Printf("!!: 2000\n")
+	out = determine_swipe_result([4]int{2,0,0,0})
+	fmt.Printf(strconv.Itoa(out[0]) + "," + strconv.Itoa(out[1]) + "," + strconv.Itoa(out[2]) + "," + strconv.Itoa(out[3])+"\n\n")
+	// 2002
+	fmt.Printf("!!: 2002\n")
+	out = determine_swipe_result([4]int{2,0,0,2})
+	fmt.Printf(strconv.Itoa(out[0]) + "," + strconv.Itoa(out[1]) + "," + strconv.Itoa(out[2]) + "," + strconv.Itoa(out[3])+"\n\n")
+	// 4002
+	fmt.Printf("!!: 4002\n")
+	out = determine_swipe_result([4]int{4,0,0,2})
+	fmt.Printf(strconv.Itoa(out[0]) + "," + strconv.Itoa(out[1]) + "," + strconv.Itoa(out[2]) + "," + strconv.Itoa(out[3])+"\n\n")
+	// 2020
+	fmt.Printf("!!: 2020\n")
+	out = determine_swipe_result([4]int{2,0,2,0})
+	fmt.Printf(strconv.Itoa(out[0]) + "," + strconv.Itoa(out[1]) + "," + strconv.Itoa(out[2]) + "," + strconv.Itoa(out[3])+"\n\n")
+	// 4222
+	fmt.Printf("!!: 4222\n")
+	out = determine_swipe_result([4]int{4,2,2,2})
+	fmt.Printf(strconv.Itoa(out[0]) + "," + strconv.Itoa(out[1]) + "," + strconv.Itoa(out[2]) + "," + strconv.Itoa(out[3])+"\n\n")
 }
