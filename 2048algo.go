@@ -10,7 +10,13 @@ import (
 
 func main() {
 	//prop = get_props()
+
+	//run_game()
+	run_tests()
 	
+}
+
+func run_game() {
 	var g= map[string]int {
 		"0,0": 0,
 		"1,0": 0,
@@ -29,8 +35,6 @@ func main() {
 		"2,3": 0,
 		"3,3": 0,
 	}
-	//fmt.Printf("----- EMPTY GRID: -----\n")
-	//printGrid(g)
 	g = initGrid(g)
 	fmt.Printf("----- INIT GRID: -----\n")
 	printGrid(g)
@@ -77,11 +81,6 @@ func main() {
 	num1= randomNum()
 	g = putInGrid(g, num1)
 	printGrid(g)
-	
-	
-
-	//run_tests()
-	
 }
 
 func randomNum() int {
@@ -222,6 +221,16 @@ func determine_swipe_result(a [4]int) [4]int {
 	if (a[1] == a[3]) && (a[2] == 0) {
 		dr = a[1] + a[3]
 	}
+
+	if (a[0] == a[3]) && (a[1] == 0) && (a[2] == 0) {
+		dr = a[0] + a[3]
+	}
+
+	if (a[0] > 0) && (a[3] > 0) && (a[0] != a[3]) && (a[1] == 0) && (a[2] == 0) {
+		dr = a[3]
+		cr = a[0]
+	}
+
 	if (a[1]==a[2]) && (dr == 0) && (a[3] != 0) && (a[3] != a[2]) {
 		dr=a[3]
 		cr=a[2]+a[1]
@@ -279,69 +288,154 @@ func swipe_up(g *map[string]int) {
 
 func run_tests() {
 	var out [4]int
-
-	fmt.Printf("!!: 0040\n")
+	//0040
 	out = determine_swipe_result([4]int{0,0,4,0})
-	fmt.Printf(strconv.Itoa(out[0]) + "," + strconv.Itoa(out[1]) + "," + strconv.Itoa(out[2]) + "," + strconv.Itoa(out[3])+"\n")
+	if (strconv.Itoa(out[0]) + strconv.Itoa(out[1]) + strconv.Itoa(out[2]) + strconv.Itoa(out[3]) != "0004") {
+		fmt.Printf("!!! 0040 produced " + strconv.Itoa(out[0]) + strconv.Itoa(out[1]) + strconv.Itoa(out[2]) + strconv.Itoa(out[3]) + "\n")
+	} else {
+		fmt.Printf("0040 passed\n")
+
+	}
+
 	// 0200
-	fmt.Printf("!!: 0200\n")
 	out = determine_swipe_result([4]int{0,2,0,0})
-	fmt.Printf(strconv.Itoa(out[0]) + "," + strconv.Itoa(out[1]) + "," + strconv.Itoa(out[2]) + "," + strconv.Itoa(out[3])+"\n")
+	if (strconv.Itoa(out[0]) + strconv.Itoa(out[1]) + strconv.Itoa(out[2]) + strconv.Itoa(out[3]) != "0002") {
+		fmt.Printf("!!! 0200 produced " + strconv.Itoa(out[0]) + strconv.Itoa(out[1]) + strconv.Itoa(out[2]) + strconv.Itoa(out[3]) + "\n")
+	} else {
+		fmt.Printf("0200 passed\n")
+
+	}
+
 	// 0202
-	fmt.Printf("!!: 0202\n")
 	out = determine_swipe_result([4]int{0,2,0,2})
-	fmt.Printf(strconv.Itoa(out[0]) + "," + strconv.Itoa(out[1]) + "," + strconv.Itoa(out[2]) + "," + strconv.Itoa(out[3])+"\n")
+	if (strconv.Itoa(out[0]) + strconv.Itoa(out[1]) + strconv.Itoa(out[2]) + strconv.Itoa(out[3]) != "0004") {
+		fmt.Printf("!!! 0202 produced " + strconv.Itoa(out[0]) + strconv.Itoa(out[1]) + strconv.Itoa(out[2]) + strconv.Itoa(out[3]) + "\n")
+	} else {
+		fmt.Printf("0202 passed\n")
+
+	}
+
+
 	// 0220
-	fmt.Printf("!!: 0220\n")
 	out = determine_swipe_result([4]int{0,2,2,0})
-	fmt.Printf(strconv.Itoa(out[0]) + "," + strconv.Itoa(out[1]) + "," + strconv.Itoa(out[2]) + "," + strconv.Itoa(out[3])+"\n")
+	if (strconv.Itoa(out[0]) + strconv.Itoa(out[1]) + strconv.Itoa(out[2]) + strconv.Itoa(out[3]) != "0004") {
+		fmt.Printf("!!! 0220 produced " + strconv.Itoa(out[0]) + strconv.Itoa(out[1]) + strconv.Itoa(out[2]) + strconv.Itoa(out[3]) + "\n")
+	} else {
+		fmt.Printf("0220 passed\n")
+
+	}
+
 	// 0420
-	fmt.Printf("!!: 0420\n")
 	out = determine_swipe_result([4]int{0,4,2,0})
-	fmt.Printf(strconv.Itoa(out[0]) + "," + strconv.Itoa(out[1]) + "," + strconv.Itoa(out[2]) + "," + strconv.Itoa(out[3])+"\n")
+	if (strconv.Itoa(out[0]) + strconv.Itoa(out[1]) + strconv.Itoa(out[2]) + strconv.Itoa(out[3]) != "0042") {
+		fmt.Printf("!!! 0420 produced " + strconv.Itoa(out[0]) + strconv.Itoa(out[1]) + strconv.Itoa(out[2]) + strconv.Itoa(out[3]) + "\n")
+	} else {
+		fmt.Printf("0420 passed\n")
+
+	}
+
+
 	// 2200
-	fmt.Printf("!!: 2200\n")
 	out = determine_swipe_result([4]int{2,2,0,0})
-	fmt.Printf(strconv.Itoa(out[0]) + "," + strconv.Itoa(out[1]) + "," + strconv.Itoa(out[2]) + "," + strconv.Itoa(out[3])+"\n")
+	if (strconv.Itoa(out[0]) + strconv.Itoa(out[1]) + strconv.Itoa(out[2]) + strconv.Itoa(out[3]) != "0004") {
+		fmt.Printf("!!! 2200 produced " + strconv.Itoa(out[0]) + strconv.Itoa(out[1]) + strconv.Itoa(out[2]) + strconv.Itoa(out[3]) + "\n")
+	} else {
+		fmt.Printf("2200 passed\n")
+
+	}
+
+
 	// 2220
-	fmt.Printf("!!: 2220\n")
 	out = determine_swipe_result([4]int{2,2,2,0})
-	fmt.Printf(strconv.Itoa(out[0]) + "," + strconv.Itoa(out[1]) + "," + strconv.Itoa(out[2]) + "," + strconv.Itoa(out[3])+"\n")
+	if (strconv.Itoa(out[0]) + strconv.Itoa(out[1]) + strconv.Itoa(out[2]) + strconv.Itoa(out[3]) != "0024") {
+		fmt.Printf("!!! 2220 produced " + strconv.Itoa(out[0]) + strconv.Itoa(out[1]) + strconv.Itoa(out[2]) + strconv.Itoa(out[3]) + "\n")
+	} else {
+		fmt.Printf("2220 passed\n")
+
+	}
+
 	// 2420
-	fmt.Printf("!!: 2420\n")
 	out = determine_swipe_result([4]int{2,4,2,0})
-	fmt.Printf(strconv.Itoa(out[0]) + "," + strconv.Itoa(out[1]) + "," + strconv.Itoa(out[2]) + "," + strconv.Itoa(out[3])+"\n")
-    // 4200
-	fmt.Printf("!!: 4200\n")
+	if (strconv.Itoa(out[0]) + strconv.Itoa(out[1]) + strconv.Itoa(out[2]) + strconv.Itoa(out[3]) != "0242") {
+		fmt.Printf("!!! 2420 produced " + strconv.Itoa(out[0]) + strconv.Itoa(out[1]) + strconv.Itoa(out[2]) + strconv.Itoa(out[3]) + "\n")
+	} else {
+		fmt.Printf("2420 passed\n")
+
+	}
+
+	// 4200
 	out = determine_swipe_result([4]int{4,2,0,0})
-	fmt.Printf(strconv.Itoa(out[0]) + "," + strconv.Itoa(out[1]) + "," + strconv.Itoa(out[2]) + "," + strconv.Itoa(out[3])+"\n")
+		if (strconv.Itoa(out[0]) + strconv.Itoa(out[1]) + strconv.Itoa(out[2]) + strconv.Itoa(out[3]) != "0042") {
+		fmt.Printf("!!! 4200 produced " + strconv.Itoa(out[0]) + strconv.Itoa(out[1]) + strconv.Itoa(out[2]) + strconv.Itoa(out[3]) + "\n")
+	} else {
+		fmt.Printf("4200 passed\n")
+
+	}
+
 	// 2000
-	fmt.Printf("!!: 2000\n")
 	out = determine_swipe_result([4]int{2,0,0,0})
-	fmt.Printf(strconv.Itoa(out[0]) + "," + strconv.Itoa(out[1]) + "," + strconv.Itoa(out[2]) + "," + strconv.Itoa(out[3])+"\n")
+	if (strconv.Itoa(out[0]) + strconv.Itoa(out[1]) + strconv.Itoa(out[2]) + strconv.Itoa(out[3]) != "0002") {
+		fmt.Printf("!!! 2000 produced " + strconv.Itoa(out[0]) + strconv.Itoa(out[1]) + strconv.Itoa(out[2]) + strconv.Itoa(out[3]) + "\n")
+	} else {
+		fmt.Printf("2000 passed\n")
+
+	}
+
 	// 2002
-	fmt.Printf("!!: 2002\n")
 	out = determine_swipe_result([4]int{2,0,0,2})
-	fmt.Printf(strconv.Itoa(out[0]) + "," + strconv.Itoa(out[1]) + "," + strconv.Itoa(out[2]) + "," + strconv.Itoa(out[3])+"\n")
+	if (strconv.Itoa(out[0]) + strconv.Itoa(out[1]) + strconv.Itoa(out[2]) + strconv.Itoa(out[3]) != "0004") {
+		fmt.Printf("!!! 2002 produced " + strconv.Itoa(out[0]) + strconv.Itoa(out[1]) + strconv.Itoa(out[2]) + strconv.Itoa(out[3]) + "\n")
+	} else {
+		fmt.Printf("2002 passed\n")
+
+	}
+
+
 	// 4002
-	fmt.Printf("!!: 4002\n")
 	out = determine_swipe_result([4]int{4,0,0,2})
-	fmt.Printf(strconv.Itoa(out[0]) + "," + strconv.Itoa(out[1]) + "," + strconv.Itoa(out[2]) + "," + strconv.Itoa(out[3])+"\n")
+	if (strconv.Itoa(out[0]) + strconv.Itoa(out[1]) + strconv.Itoa(out[2]) + strconv.Itoa(out[3]) != "0042") {
+		fmt.Printf("!!! 4002 produced " + strconv.Itoa(out[0]) + strconv.Itoa(out[1]) + strconv.Itoa(out[2]) + strconv.Itoa(out[3]) + "\n")
+	} else {
+		fmt.Printf("4002 passed\n")
+
+	}
+
 	// 2020
-	fmt.Printf("!!: 2020\n")
 	out = determine_swipe_result([4]int{2,0,2,0})
-	fmt.Printf(strconv.Itoa(out[0]) + "," + strconv.Itoa(out[1]) + "," + strconv.Itoa(out[2]) + "," + strconv.Itoa(out[3])+"\n")
+		if (strconv.Itoa(out[0]) + strconv.Itoa(out[1]) + strconv.Itoa(out[2]) + strconv.Itoa(out[3]) != "0004") {
+		fmt.Printf("!!! 2020 produced " + strconv.Itoa(out[0]) + strconv.Itoa(out[1]) + strconv.Itoa(out[2]) + strconv.Itoa(out[3]) + "\n")
+	} else {
+		fmt.Printf("2020 passed\n")
+
+	}
+
+
 	// 4222
-	fmt.Printf("!!: 4222\n")
 	out = determine_swipe_result([4]int{4,2,2,2})
-	fmt.Printf(strconv.Itoa(out[0]) + "," + strconv.Itoa(out[1]) + "," + strconv.Itoa(out[2]) + "," + strconv.Itoa(out[3])+"\n")
+	if (strconv.Itoa(out[0]) + strconv.Itoa(out[1]) + strconv.Itoa(out[2]) + strconv.Itoa(out[3]) != "0424") {
+		fmt.Printf("!!! 4222 produced " + strconv.Itoa(out[0]) + strconv.Itoa(out[1]) + strconv.Itoa(out[2]) + strconv.Itoa(out[3]) + "\n")
+	} else {
+		fmt.Printf("4222 passed\n")
+
+	}
+
 	// 0042
-	fmt.Printf("!!: 0042\n")
 	out = determine_swipe_result([4]int{0,0,4,2})
-	fmt.Printf(strconv.Itoa(out[0]) + "," + strconv.Itoa(out[1]) + "," + strconv.Itoa(out[2]) + "," + strconv.Itoa(out[3])+"\n")
-	// 0042
-	fmt.Printf("!!: 0224\n")
+	if (strconv.Itoa(out[0]) + strconv.Itoa(out[1]) + strconv.Itoa(out[2]) + strconv.Itoa(out[3]) != "0042") {
+		fmt.Printf("!!! 0042 produced " + strconv.Itoa(out[0]) + strconv.Itoa(out[1]) + strconv.Itoa(out[2]) + strconv.Itoa(out[3]) + "\n")
+	} else {
+		fmt.Printf("0042 passed\n")
+
+	}
+
+
+	// 0224
 	out = determine_swipe_result([4]int{0,2,2,4})
-	fmt.Printf(strconv.Itoa(out[0]) + "," + strconv.Itoa(out[1]) + "," + strconv.Itoa(out[2]) + "," + strconv.Itoa(out[3])+"\n")
+	if (strconv.Itoa(out[0]) + strconv.Itoa(out[1]) + strconv.Itoa(out[2]) + strconv.Itoa(out[3]) != "0044") {
+		fmt.Printf("!!! 0224 produced " + strconv.Itoa(out[0]) + strconv.Itoa(out[1]) + strconv.Itoa(out[2]) + strconv.Itoa(out[3]) + "\n")
+	} else {
+		fmt.Printf("0224 passed\n")
+
+	}
 
 }
