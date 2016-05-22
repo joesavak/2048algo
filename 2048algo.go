@@ -75,6 +75,59 @@ func run_game() {
 	g = putInGrid(g, num1)
 	printGrid(g)
 
+	g = swipe_right(g)
+	fmt.Printf("----- SWIPE RIGHT: -----\n")
+	num1= randomNum()
+	g = putInGrid(g, num1)
+	printGrid(g)
+
+	g = swipe_right(g)
+	fmt.Printf("----- SWIPE RIGHT: -----\n")
+	num1= randomNum()
+	g = putInGrid(g, num1)
+	printGrid(g)
+
+	g = swipe_right(g)
+	fmt.Printf("----- SWIPE RIGHT: -----\n")
+	num1= randomNum()
+	g = putInGrid(g, num1)
+	printGrid(g)
+
+	g = swipe_right(g)
+	fmt.Printf("----- SWIPE RIGHT: -----\n")
+	num1= randomNum()
+	g = putInGrid(g, num1)
+	printGrid(g)
+
+	g = swipe_right(g)
+	fmt.Printf("----- SWIPE RIGHT: -----\n")
+	num1= randomNum()
+	g = putInGrid(g, num1)
+	printGrid(g)
+
+	g = swipe_right(g)
+	fmt.Printf("----- SWIPE RIGHT: -----\n")
+	num1= randomNum()
+	g = putInGrid(g, num1)
+	printGrid(g)
+
+	g = swipe_right(g)
+	fmt.Printf("----- SWIPE RIGHT: -----\n")
+	num1= randomNum()
+	g = putInGrid(g, num1)
+	printGrid(g)
+
+	g = swipe_right(g)
+	fmt.Printf("----- SWIPE RIGHT: -----\n")
+	num1= randomNum()
+	g = putInGrid(g, num1)
+	printGrid(g)
+
+	g = swipe_right(g)
+	fmt.Printf("----- SWIPE RIGHT: -----\n")
+	num1= randomNum()
+	g = putInGrid(g, num1)
+	printGrid(g)
 
 	g = swipe_right(g)
 	fmt.Printf("----- SWIPE RIGHT: -----\n")
@@ -171,19 +224,17 @@ func determine_swipe_result(a [4]int) [4]int {
 	//else push right
 	
 	// number of zeroes in the grid
-	zcount :=0
-	for x := 0; x<4; x++ {
-		if a[x] == 0 {
+	zcount := 0
+	for x := 0; x<=3; x++ {
+		if (a[x] == 0) {
 			zcount++
 		}
 	}
-
 	if zcount == 4 {
 		return [4]int{ar,br,cr,dr} 
 	} else if zcount == 3 {
 		return [4]int{ar,br,cr,a[0] + a[1] + a[2] + a[3]}
 	}
-
 	if (a[0] != a[1]) && (a[1] != a[2]) && (a[2] != a[3]) && (a[1] != a[3]) {
 		if a[3] == 0 {
 			ar,br,cr,dr := 0,a[0],a[1],a[2]
@@ -191,14 +242,27 @@ func determine_swipe_result(a [4]int) [4]int {
 		} else if a[2] == 0 {
 			ar,br,cr,dr := 0,a[0],a[1],a[3]
 			return [4]int{ar,br,cr,dr}
-		} else if a[1] == 0 {
+		} else if (a[1] == 0) && (a[0] != a[2]) {
 			ar,br,cr,dr := 0,a[0],a[2],a[3]
+			return [4]int{ar,br,cr,dr}
+		} else if (a[1] == 0) && (a[0] == a[2]) {
+			ar,br,cr,dr := 0,0,a[0]+a[2],a[3]
 			return [4]int{ar,br,cr,dr}
 		}  else {
 			ar,br,cr,dr := a[0],a[1],a[2],a[3]
 			return [4]int{ar,br,cr,dr}
 		}
 	}
+
+	if (a[1] == a[3]) && (a[2] != 0) && (a[2] != a[3]) && (a[0] == 0) {
+		ar,br,cr,dr := a[0],a[1],a[2],a[3]
+		return [4]int{ar,br,cr,dr}
+	}
+	if (a[1] == a[3]) && (a[2] != a[3]) && (a[0] != a[1]) && (zcount == 0) {
+		ar,br,cr,dr := a[0],a[1],a[2],a[3]
+		return [4]int{ar,br,cr,dr}
+	}
+
 	//fmt.Printf("DR:" + strconv.Itoa(dr) + "\n")
 	if (a[3] == a[2]) && (a[3] != a[1]) && (a[3]  != a[0]) {
 		dr = a[3] + a[2]
@@ -294,7 +358,6 @@ func run_tests() {
 		fmt.Printf("!!! 0040 produced " + strconv.Itoa(out[0]) + strconv.Itoa(out[1]) + strconv.Itoa(out[2]) + strconv.Itoa(out[3]) + "\n")
 	} else {
 		fmt.Printf("0040 passed\n")
-
 	}
 
 	// 0200
@@ -303,7 +366,6 @@ func run_tests() {
 		fmt.Printf("!!! 0200 produced " + strconv.Itoa(out[0]) + strconv.Itoa(out[1]) + strconv.Itoa(out[2]) + strconv.Itoa(out[3]) + "\n")
 	} else {
 		fmt.Printf("0200 passed\n")
-
 	}
 
 	// 0202
@@ -312,7 +374,6 @@ func run_tests() {
 		fmt.Printf("!!! 0202 produced " + strconv.Itoa(out[0]) + strconv.Itoa(out[1]) + strconv.Itoa(out[2]) + strconv.Itoa(out[3]) + "\n")
 	} else {
 		fmt.Printf("0202 passed\n")
-
 	}
 
 
@@ -322,7 +383,6 @@ func run_tests() {
 		fmt.Printf("!!! 0220 produced " + strconv.Itoa(out[0]) + strconv.Itoa(out[1]) + strconv.Itoa(out[2]) + strconv.Itoa(out[3]) + "\n")
 	} else {
 		fmt.Printf("0220 passed\n")
-
 	}
 
 	// 0420
@@ -331,7 +391,6 @@ func run_tests() {
 		fmt.Printf("!!! 0420 produced " + strconv.Itoa(out[0]) + strconv.Itoa(out[1]) + strconv.Itoa(out[2]) + strconv.Itoa(out[3]) + "\n")
 	} else {
 		fmt.Printf("0420 passed\n")
-
 	}
 
 
@@ -341,7 +400,6 @@ func run_tests() {
 		fmt.Printf("!!! 2200 produced " + strconv.Itoa(out[0]) + strconv.Itoa(out[1]) + strconv.Itoa(out[2]) + strconv.Itoa(out[3]) + "\n")
 	} else {
 		fmt.Printf("2200 passed\n")
-
 	}
 
 
@@ -351,7 +409,6 @@ func run_tests() {
 		fmt.Printf("!!! 2220 produced " + strconv.Itoa(out[0]) + strconv.Itoa(out[1]) + strconv.Itoa(out[2]) + strconv.Itoa(out[3]) + "\n")
 	} else {
 		fmt.Printf("2220 passed\n")
-
 	}
 
 	// 2420
@@ -360,7 +417,6 @@ func run_tests() {
 		fmt.Printf("!!! 2420 produced " + strconv.Itoa(out[0]) + strconv.Itoa(out[1]) + strconv.Itoa(out[2]) + strconv.Itoa(out[3]) + "\n")
 	} else {
 		fmt.Printf("2420 passed\n")
-
 	}
 
 	// 4200
@@ -369,7 +425,6 @@ func run_tests() {
 		fmt.Printf("!!! 4200 produced " + strconv.Itoa(out[0]) + strconv.Itoa(out[1]) + strconv.Itoa(out[2]) + strconv.Itoa(out[3]) + "\n")
 	} else {
 		fmt.Printf("4200 passed\n")
-
 	}
 
 	// 2000
@@ -378,7 +433,6 @@ func run_tests() {
 		fmt.Printf("!!! 2000 produced " + strconv.Itoa(out[0]) + strconv.Itoa(out[1]) + strconv.Itoa(out[2]) + strconv.Itoa(out[3]) + "\n")
 	} else {
 		fmt.Printf("2000 passed\n")
-
 	}
 
 	// 2002
@@ -387,7 +441,6 @@ func run_tests() {
 		fmt.Printf("!!! 2002 produced " + strconv.Itoa(out[0]) + strconv.Itoa(out[1]) + strconv.Itoa(out[2]) + strconv.Itoa(out[3]) + "\n")
 	} else {
 		fmt.Printf("2002 passed\n")
-
 	}
 
 
@@ -397,7 +450,6 @@ func run_tests() {
 		fmt.Printf("!!! 4002 produced " + strconv.Itoa(out[0]) + strconv.Itoa(out[1]) + strconv.Itoa(out[2]) + strconv.Itoa(out[3]) + "\n")
 	} else {
 		fmt.Printf("4002 passed\n")
-
 	}
 
 	// 2020
@@ -406,7 +458,6 @@ func run_tests() {
 		fmt.Printf("!!! 2020 produced " + strconv.Itoa(out[0]) + strconv.Itoa(out[1]) + strconv.Itoa(out[2]) + strconv.Itoa(out[3]) + "\n")
 	} else {
 		fmt.Printf("2020 passed\n")
-
 	}
 
 
@@ -416,7 +467,6 @@ func run_tests() {
 		fmt.Printf("!!! 4222 produced " + strconv.Itoa(out[0]) + strconv.Itoa(out[1]) + strconv.Itoa(out[2]) + strconv.Itoa(out[3]) + "\n")
 	} else {
 		fmt.Printf("4222 passed\n")
-
 	}
 
 	// 0042
@@ -425,7 +475,6 @@ func run_tests() {
 		fmt.Printf("!!! 0042 produced " + strconv.Itoa(out[0]) + strconv.Itoa(out[1]) + strconv.Itoa(out[2]) + strconv.Itoa(out[3]) + "\n")
 	} else {
 		fmt.Printf("0042 passed\n")
-
 	}
 
 
@@ -435,7 +484,38 @@ func run_tests() {
 		fmt.Printf("!!! 0224 produced " + strconv.Itoa(out[0]) + strconv.Itoa(out[1]) + strconv.Itoa(out[2]) + strconv.Itoa(out[3]) + "\n")
 	} else {
 		fmt.Printf("0224 passed\n")
+	}
 
+	// 4042
+	out = determine_swipe_result([4]int{4,0,4,2})
+	if (strconv.Itoa(out[0]) + strconv.Itoa(out[1]) + strconv.Itoa(out[2]) + strconv.Itoa(out[3]) != "0082") {
+		fmt.Printf("!!! 4042 produced " + strconv.Itoa(out[0]) + strconv.Itoa(out[1]) + strconv.Itoa(out[2]) + strconv.Itoa(out[3]) + "\n")
+	} else {
+		fmt.Printf("4042 passed\n")
+	}
+
+	// 0242
+	out = determine_swipe_result([4]int{0,2,4,2})
+	if (strconv.Itoa(out[0]) + strconv.Itoa(out[1]) + strconv.Itoa(out[2]) + strconv.Itoa(out[3]) != "0242") {
+		fmt.Printf("!!! 0242 produced " + strconv.Itoa(out[0]) + strconv.Itoa(out[1]) + strconv.Itoa(out[2]) + strconv.Itoa(out[3]) + "\n")
+	} else {
+		fmt.Printf("0242 passed\n")
+	}
+
+	// 2424
+	out = determine_swipe_result([4]int{2,4,2,4})
+	if (strconv.Itoa(out[0]) + strconv.Itoa(out[1]) + strconv.Itoa(out[2]) + strconv.Itoa(out[3]) != "2424") {
+		fmt.Printf("!!! 2424 produced " + strconv.Itoa(out[0]) + strconv.Itoa(out[1]) + strconv.Itoa(out[2]) + strconv.Itoa(out[3]) + "\n")
+	} else {
+		fmt.Printf("2424 passed\n")
+	}
+
+	// 4424
+	out = determine_swipe_result([4]int{4,4,2,4})
+	if (strconv.Itoa(out[0]) + strconv.Itoa(out[1]) + strconv.Itoa(out[2]) + strconv.Itoa(out[3]) != "0824") {
+		fmt.Printf("!!! 4424 produced " + strconv.Itoa(out[0]) + strconv.Itoa(out[1]) + strconv.Itoa(out[2]) + strconv.Itoa(out[3]) + "\n")
+	} else {
+		fmt.Printf("4424 passed\n")
 	}
 
 }
