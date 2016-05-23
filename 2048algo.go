@@ -11,8 +11,8 @@ import (
 func main() {
 	//prop = get_props()
 
-	//run_game()
-	run_tests()
+	run_game()
+	//run_tests()
 	
 }
 
@@ -38,102 +38,15 @@ func run_game() {
 	g = initGrid(g)
 	fmt.Printf("----- INIT GRID: -----\n")
 	printGrid(g)
-	g = swipe_right(g)
-	fmt.Printf("----- SWIPE RIGHT: -----\n")
-	num1:= randomNum()
-	g = putInGrid(g, num1)
-	printGrid(g)
 
-	g = swipe_right(g)
-	fmt.Printf("----- SWIPE RIGHT: -----\n")
-	num1= randomNum()
-	g = putInGrid(g, num1)
-	printGrid(g)
+	for x:=0; x<10; x++ {
+		g = swipe_right(g)
+		fmt.Printf("----- SWIPE RIGHT: -----\n")
+		num1:= randomNum()
+		g = putInGrid(g, num1)
+		printGrid(g)
+	}
 
-	g = swipe_right(g)
-	fmt.Printf("----- SWIPE RIGHT: -----\n")
-	num1= randomNum()
-	g = putInGrid(g, num1)
-	printGrid(g)
-
-
-	g = swipe_right(g)
-	fmt.Printf("----- SWIPE RIGHT: -----\n")
-	num1= randomNum()
-	g = putInGrid(g, num1)
-	printGrid(g)
-	
-	g = swipe_right(g)
-	fmt.Printf("----- SWIPE RIGHT: -----\n")
-	num1= randomNum()
-	g = putInGrid(g, num1)
-	printGrid(g)
-
-	g = swipe_right(g)
-	fmt.Printf("----- SWIPE RIGHT: -----\n")
-	num1= randomNum()
-	g = putInGrid(g, num1)
-	printGrid(g)
-
-	g = swipe_right(g)
-	fmt.Printf("----- SWIPE RIGHT: -----\n")
-	num1= randomNum()
-	g = putInGrid(g, num1)
-	printGrid(g)
-
-	g = swipe_right(g)
-	fmt.Printf("----- SWIPE RIGHT: -----\n")
-	num1= randomNum()
-	g = putInGrid(g, num1)
-	printGrid(g)
-
-	g = swipe_right(g)
-	fmt.Printf("----- SWIPE RIGHT: -----\n")
-	num1= randomNum()
-	g = putInGrid(g, num1)
-	printGrid(g)
-
-	g = swipe_right(g)
-	fmt.Printf("----- SWIPE RIGHT: -----\n")
-	num1= randomNum()
-	g = putInGrid(g, num1)
-	printGrid(g)
-
-	g = swipe_right(g)
-	fmt.Printf("----- SWIPE RIGHT: -----\n")
-	num1= randomNum()
-	g = putInGrid(g, num1)
-	printGrid(g)
-
-	g = swipe_right(g)
-	fmt.Printf("----- SWIPE RIGHT: -----\n")
-	num1= randomNum()
-	g = putInGrid(g, num1)
-	printGrid(g)
-
-	g = swipe_right(g)
-	fmt.Printf("----- SWIPE RIGHT: -----\n")
-	num1= randomNum()
-	g = putInGrid(g, num1)
-	printGrid(g)
-
-	g = swipe_right(g)
-	fmt.Printf("----- SWIPE RIGHT: -----\n")
-	num1= randomNum()
-	g = putInGrid(g, num1)
-	printGrid(g)
-
-	g = swipe_right(g)
-	fmt.Printf("----- SWIPE RIGHT: -----\n")
-	num1= randomNum()
-	g = putInGrid(g, num1)
-	printGrid(g)
-
-	g = swipe_right(g)
-	fmt.Printf("----- SWIPE RIGHT: -----\n")
-	num1= randomNum()
-	g = putInGrid(g, num1)
-	printGrid(g)
 }
 
 func randomNum() int {
