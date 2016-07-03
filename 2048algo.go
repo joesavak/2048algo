@@ -5,6 +5,7 @@ import (
 	"strconv"
 	"math/rand"
 	"time"
+	"os"
 )
 
 
@@ -36,17 +37,61 @@ func run_game() {
 		"3,3": 0,
 	}
 	g = initGrid(g)
-	fmt.Printf("----- INIT GRID: -----\n")
+	fmt.Printf("----- Let's play a game-----\n")
 	printGrid(g)
+	rightResponses := []string{"r", "R", "Right", "right"}
+	upResponses := []string{ "u", "U", "Up","up"}
+	leftResponses := []string{"l","L","Left","left"}
+	downResponses := []string{"d","D","down","Down"}
+	direction:= ""
 
-	for x:=0; x<10; x++ {
-		g = swipe_right(g)
-		fmt.Printf("----- SWIPE RIGHT: -----\n")
-		num1:= randomNum()
-		g = putInGrid(g, num1)
-		printGrid(g)
+	for {
+		fmt.Print("Swipe direction? (u)p, (r)ight, (l)eft, (d)own, e(x)it: ")
+		
+		_, err:= fmt.Scanln(&direction)
+
+		if err != nil {
+			fmt.Print(err)
+		}
+		if containsString(rightResponses, direction) {
+			g = swipe_right(g)
+			fmt.Printf("----- SWIPE RIGHT: -----\n")
+			num1:= randomNum()
+			g = putInGrid(g, num1)
+			printGrid(g)
+		} else if containsString(leftResponses, direction) {
+			g = swipe_left(g)
+			fmt.Printf("----- SWIPE LEFT: -----\n")
+			num1:= randomNum()
+			g = putInGrid(g, num1)
+			printGrid(g)
+		} else if containsString(upResponses, direction) {
+			fmt.Printf("----- SWIPE UP: -----\n")
+		} else if containsString(downResponses, direction) {
+			fmt.Printf("----- SWIPE DOWN: -----\n")
+		} else if (direction == "x") {
+			os.Exit(0)
+		} else {
+			fmt.Printf("----- BAD SWIPE. Try again -----\n")
+		}
 	}
 
+}
+
+// posString returns the first index of element in slice.
+// If slice does not contain element, returns -1.
+func posString(slice []string, element string) int {
+	for index, elem := range slice {
+		if elem == element {
+			return index
+		}
+	}
+	return -1
+}
+
+// containsString returns true iff slice contains element
+func containsString(slice []string, element string) bool {
+	return !(posString(slice, element) == -1)
 }
 
 func randomNum() int {
@@ -129,6 +174,26 @@ func swipe_right(g map[string]int) map[string]int {
 	return g
 }
 
+func swipe_left(g map[string]int) map[string]int {
+	// by swiping left, we move all numbers to the left, combining them when the number to their left is the same
+	var a [4]int
+	var r [4]int
+	for y:=0; y<4; y++ {
+		a[0] = g[strconv.Itoa(3)+","+strconv.Itoa(y)]
+		a[1] = g[strconv.Itoa(2)+","+strconv.Itoa(y)]
+		a[2] = g[strconv.Itoa(1)+","+strconv.Itoa(y)]
+		a[3] = g[strconv.Itoa(0)+","+strconv.Itoa(y)]
+		// fmt.Printf("On Y access of " + strconv.Itoa(y)+"\n")
+		r = determine_swipe_result(a)
+		for z := 0; z<4; z++ {
+			//fmt.Printf("Returned for X of " + strconv.Itoa(z) + " with value of access of " + strconv.Itoa(r[z])+"\n")
+			g[strconv.Itoa(z)+","+strconv.Itoa(y)] = r[z]
+		}
+	}
+	return g
+}
+
+
 func determine_swipe_result(a [4]int) [4]int {
 	//always pushes toward D
 	ar,br,cr,dr :=0,0,0,0
@@ -173,6 +238,10 @@ func determine_swipe_result(a [4]int) [4]int {
 	}
 	if (a[1] == a[3]) && (a[2] != a[3]) && (a[0] != a[1]) && (zcount == 0) {
 		ar,br,cr,dr := a[0],a[1],a[2],a[3]
+		return [4]int{ar,br,cr,dr}
+	}
+	if (a[0]==a[1]) && (a[1] != a[2]) && (a[2] != a[3]) && (zcount == 0) {
+		ar,br,cr,dr := 0,a[0]+a[1],a[2],a[3]
 		return [4]int{ar,br,cr,dr}
 	}
 
@@ -250,17 +319,6 @@ func determine_swipe_result(a [4]int) [4]int {
     return [4]int{ar,br,cr,dr}
 }
 
-func swipe_left(g *map[string]int) {
-	fmt.Printf("Going Left\n")
-}
-
-func swipe_down(g *map[string]int) {
-	fmt.Printf("Going Down\n")
-}
-
-func swipe_up(g *map[string]int) {
-	fmt.Printf("Going Up\n")
-}
 
 
 func run_tests() {
