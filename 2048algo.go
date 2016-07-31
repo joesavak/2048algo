@@ -179,16 +179,16 @@ func swipe_left(g map[string]int) map[string]int {
 	var a [4]int
 	var r [4]int
 	for y:=0; y<4; y++ {
-		a[0] = g[strconv.Itoa(3)+","+strconv.Itoa(y)]
-		a[1] = g[strconv.Itoa(2)+","+strconv.Itoa(y)]
-		a[2] = g[strconv.Itoa(1)+","+strconv.Itoa(y)]
-		a[3] = g[strconv.Itoa(0)+","+strconv.Itoa(y)]
+		a[0] = g[strconv.Itoa(0)+","+strconv.Itoa(y)]
+		a[1] = g[strconv.Itoa(1)+","+strconv.Itoa(y)]
+		a[2] = g[strconv.Itoa(2)+","+strconv.Itoa(y)]
+		a[3] = g[strconv.Itoa(3)+","+strconv.Itoa(y)]
 		// fmt.Printf("On Y access of " + strconv.Itoa(y)+"\n")
 		r = determine_swipe_result(a)
-		for z := 0; z<4; z++ {
-			//fmt.Printf("Returned for X of " + strconv.Itoa(z) + " with value of access of " + strconv.Itoa(r[z])+"\n")
-			g[strconv.Itoa(z)+","+strconv.Itoa(y)] = r[z]
-		}
+		g[strconv.Itoa(0)+","+strconv.Itoa(y)] = r[3]
+		g[strconv.Itoa(1)+","+strconv.Itoa(y)] = r[2]
+		g[strconv.Itoa(2)+","+strconv.Itoa(y)] = r[1]
+		g[strconv.Itoa(3)+","+strconv.Itoa(y)] = r[0]
 	}
 	return g
 }
@@ -246,9 +246,15 @@ func determine_swipe_result(a [4]int) [4]int {
 	}
 
 	//fmt.Printf("DR:" + strconv.Itoa(dr) + "\n")
-	if (a[3] == a[2]) && (a[3] != a[1]) && (a[3]  != a[0]) {
+	if (a[3] == a[2]) && (a[3] != a[1]) && (a[3] != a[0]) && (a[3] == 0) {
 		dr = a[3] + a[2]
 	}
+	if (a[3] == a[2]) && (a[3] != a[1]) && (a[3] != a[0]) && (a[3] != 0) {
+		dr = a[3] + a[2]
+		cr = a[1]
+		br = a[0]
+	}
+
 	if (a[3] == a[2]) && (a[3] == a[1]) && (a[3]  != a[0]) {
 		cr = a[1]
 		dr = a[3] + a[2]
@@ -487,6 +493,14 @@ func run_tests() {
 		fmt.Printf("!!! 4424 produced " + strconv.Itoa(out[0]) + strconv.Itoa(out[1]) + strconv.Itoa(out[2]) + strconv.Itoa(out[3]) + "\n")
 	} else {
 		fmt.Printf("4424 passed\n")
+	}
+
+	// 0488
+	out = determine_swipe_result([4]int{0,4,8,8})
+	if (strconv.Itoa(out[0]) + strconv.Itoa(out[1]) + strconv.Itoa(out[2]) + strconv.Itoa(out[3]) != "00416") {
+		fmt.Printf("!!! 0488 produced " + strconv.Itoa(out[0]) + strconv.Itoa(out[1]) + strconv.Itoa(out[2]) + strconv.Itoa(out[3]) + "\n")
+	} else {
+		fmt.Printf("0488 passed\n")
 	}
 
 }
